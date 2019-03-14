@@ -22,9 +22,8 @@ If there is ever any interest, I'll create the necessary setup files.
 
 ## Usage
 
-Instantiate a MetaMap class instance and process a sentence:
+### Instantiate a MetaMap class instance and process a sentence:
 
-Reading:
 ```python
 from pyMap import MetaMap
 
@@ -40,7 +39,7 @@ results = MM.process_text(text, 'metamap14.bat --XMLf')
 MM.stop_skrmedpost_server()
 ```
 
-Optionally converting the XML results into a useable table:
+### Optionally converting the XML results into a useable table:
 ```python
 import pandas as pd
 from utils import xml_to_soup, extract_results_from_soup
@@ -71,6 +70,23 @@ df looks like:
 | the               | the       | det               |          |                |                       |         0 |
 | physician         | physician | noun              | C0031831 | prog           | Physicians            |         0 |
 | .                 | .         | punc              |          |                |                       |         0 |
+
+### Use with NLTK to process an entire document sentence-by-sentence
+```python
+from nltk.tokenize import sent_tokenize
+from collections import defaultdict
+
+master_dict = defaultdict(list
+sents = sent_tokenize(big_document)
+for sent in sents:
+    results = MM.process_text(sent, 'metamap14.bat --XMLf')
+    soup = xml_to_soup(results
+    out, extra_metadata = extract_results_from_soup(soup)
+    for key in out:
+        master_dict[key].extend(out[key])
+        
+document_df = pd.DataFrame(master_dict)
+```
 
 ## Authors
 
