@@ -82,4 +82,4 @@ David Beery
 
 ## Acknowledgements
 
-*Thanks to Dr. Aronson and everyone at the NLM for creating and maintaining MetaMap in all its forms!
+* Thanks to Dr. Aronson and everyone at the NLM for creating and maintaining MetaMap in all its forms!
