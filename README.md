@@ -44,7 +44,7 @@ MM.stop_skrmedpost_server()
 import pandas as pd
 from utils import xml_to_soup, extract_results_from_soup
 
-soup = xml_to_soup(results
+soup = xml_to_soup(results)
 out, extra_metadata = extract_results_from_soup(soup)
 df = pd.DataFrame(out)
 print(df)
