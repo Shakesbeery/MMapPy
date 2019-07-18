@@ -1,4 +1,4 @@
-# pyMap
+# MMapPy
 
 pyMap is a simple interface for use with the NLM's MetaMap program. The idea and implementation originated from my needs to quickly process large amounts of medical text and convert it into a flattened table. As such, pyMap offers a utility for converting MetaMap XML output into a dictionary of lists (which can easily be converted to a Pandas DataFrame object). 
 
