@@ -9,7 +9,7 @@ def xml_to_soup(xml_string):
     Create a beautiful soup object from a MetaMap XML string.
 
     '''
-    return BeautifulSoup(xml_string[xml_string.find('<?xml'):],'lxml')
+    return BeautifulSoup(xml_string[xml_string.find('<?xml'):], 'lxml')
 
 
 def parse_candidate(candidate, candidatematch, map_dict):
@@ -116,10 +116,12 @@ def handle_syntax_units(inputmatch, output_d, extra_d, map_dict,
         output_d['Word'].append(word)
         output_d['LexicalCategory'].append(lexcat)
 
+        #Get the metainformation for the match
         if inputmatch.lower() in map_dict:
             for key in keys:
                 output_d[key].append(map_dict[match][key])
 
+        #Handle multi-word metainformation
         elif match in extra_d and match_loc in extra_d[match]:
             map_T = map_dict[extra_d[match][match_loc]['T']]
             for key in keys:
@@ -153,15 +155,19 @@ def extract_results_from_soup(soup):
     extra_d = defaultdict(lambda: defaultdict(dict))
     output_d = defaultdict(list)
     for utterance in utterances:
+        #Process at a sentene level
         utt_text = utterance.find('utttext').get_text()
         map_dict = defaultdict(dict)
         candidates = utterance.find_all('candidate')
         for candidate in candidates:
+            #Process at a ~word level
             candidatematch = candidate.find('candidatematched')
             candidatematch = candidatematch.get_text().lower()
         
             length = int(candidate.find('length').get_text())
             can_len = len(candidatematch)
+
+            #Handle cases where multiple lexical units inform a single candidate
             if len(candidatematch.split()) > 1 or can_len != length:
                 start = int(candidate.find('startpos').get_text())
 

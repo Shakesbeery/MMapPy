@@ -25,7 +25,7 @@ If there is ever any interest, I'll create the necessary setup files.
 ### Instantiate a MetaMap class instance and process a sentence:
 
 ```python
-from MMapPy import MetaMap
+from pyMap import MetaMap
 
 MM = MetaMap()
 

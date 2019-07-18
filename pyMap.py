@@ -1,4 +1,8 @@
-import os, shlex, subprocess, unicodedata, string
+import os
+import shlex
+import subprocess
+import unicodedata
+import string
 
 class MetaMap():
 
